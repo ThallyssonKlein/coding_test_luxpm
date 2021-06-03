@@ -21,7 +21,7 @@ db.sequelize = sequelize;
 
 db.users = require("../models/user.model.js")(sequelize, Sequelize);
 
-db.quotations.hasMany(db.estimations);
+// db.quotations.hasMany(db.estimations);
 
 db.sequelize.sync();
 

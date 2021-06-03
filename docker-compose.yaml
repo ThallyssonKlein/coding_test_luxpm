@@ -1,0 +1,36 @@
+version: "3"
+
+networks:
+  my_net:
+    driver: bridge
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db2
+    hostname: mysql_db2
+    restart: on-failure
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=luxpmsoft
+      - MYSQL_USER=master
+      - MYSQL_PASSWORD=password
+    ports:
+      - 3306:3306
+  api:
+    container_name: api
+    hostname: api
+    build: ./api
+    networks:
+      - my_net
+    ports:
+      - 5000:5000
+  encrypt_service:
+    container_name: encrypt_service
+    restart: on-failure
+    networks:
+      - my_net
+    hostname: encrypt_service
+    build: ./encrypt_service
+    ports:
+      - 5001:5001
