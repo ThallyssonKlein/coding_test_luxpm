@@ -1,6 +1,6 @@
 const db = require('../config/sequelize');
 const User = db.users;
-const Response = require('./response');
+// const Response = require('./response');
 
 exports.signup = async (req, res) => {
 

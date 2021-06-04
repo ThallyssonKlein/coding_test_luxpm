@@ -1,7 +1,7 @@
 var user = require("../controllers/User.Controller");
 const { check, validationResult } = require('express-validator');
 
-var VerifyToken = require('./middleware.js');
+// var VerifyToken = require('./middleware.js');
 module.exports = (app) => {
     app.post("/signup", [
         check('firstname').exists().trim().escape(),
@@ -20,15 +20,15 @@ module.exports = (app) => {
     app.post("/signin", user.signin);
     app.get("/signout", user.signout);
 
-    app.get("/account/get",
-    VerifyToken,
-    (req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
-        user.get(req, res)
-    });
+    // app.get("/account/get",
+    // VerifyToken,
+    // (req, res) => {
+    //     const errors = validationResult(req);
+    //     if (!errors.isEmpty()) {
+    //         return res.status(400).json({ errors: errors.array() });
+    //     }
+    //     user.get(req, res)
+    // });
 
     app.post("/account/updateNickname", [
         check('email').isEmail().normalizeEmail(),
